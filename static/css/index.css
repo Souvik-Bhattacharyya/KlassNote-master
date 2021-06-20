@@ -1,0 +1,56 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background-attachment: scroll;
+  overflow: hidden;
+}
+.wrapper video {
+  min-width: 100%;
+  min-height: 100%;
+  position: relative;
+  z-index: 1;
+}
+.wrapper .overlay {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  /* background: linear-gradient(to right, #1fa2ffcc, #12d8facc, #a6ffcbcc); */
+  /* background: linear-gradient(to right, #fdc830cc, #f37335cc); */
+  /* background: linear-gradient(to right, #c6ffddcc, #fbd786cc, #f7797dcc); */
+  /* background: linear-gradient(to right, #f12711cc, #f5af19cc); */
+  /* background: linear-gradient(to right, #3494e6cc, #ec6eadcc); */
+  /* background: linear-gradient(to right, #fc4a1acc, #f7b733cc, #a6ffcbcc); */
+  background: linear-gradient(to right, #bc9a36cc, #ea8939cc, #ffeb9e);
+}
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overlay h1 {
+  font-family: Pacifico;
+  font-size: 7rem;
+}
+.overlay img {
+  max-width: 400px;
+  object-fit: scale-down;
+  margin-right: 5rem;
+}
+@media screen and (max-width: 600px) {
+  .overlay {
+    flex-direction: column;
+  }
+  .overlay img {
+    max-width: 85%;
+    margin: auto;
+  }
+  .overlay h1 {
+    font-size: 4rem;
+    margin-bottom: auto;
+  }
+}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}{% load static %} {% block title %}
+<title>Home | KlassNote</title>
+{% endblock %} {% block content %}
+<link href="{% static 'css/index.css' %}" rel="stylesheet" />
+
+<div class="wrapper">
+  <div class="overlay">
+    <img src="{% static 'images/klassnote-logo.png' %}" />
+  </div>
+  <div class="gradient">
+    <video autoplay muted loop>
+      <source src="{% static 'videos/cover_vdo.mp4' %}" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Services | KlassNote</title> {% endblock %} {%block content %}
+<link href="{% static 'css/service.css' %}" rel="stylesheet" />
+
+<div class="container box-con ">
+  <div class="box"><i class="fas fa-quote-left fa2"></i>
+    <div class="text"><i class="fas fa-quote-right fa1"></i>
+      <div>
+        <h2 class="lead pt-4 px-5">
+          When you serve the customer better, they always return on your
+          investment.
+        </h2>
+        <h4 class="text-end" style="font-size: 18px; color: #ccc;">– Kara Parlin</h4>      </div>
+    </div>
+  </div>
+</div>
+
+<!-- service -->
+<div class="container my-5" style="position: relative;">
+  {% for index, service in services %} {% if index %}
+  <div data-aos="fade-up-right">
+    {% else %}
+    <div data-aos="fade-up-left">
+      {% endif %}
+      <div class="row mt-5 each-service">
+        {% if index %}
+        <div class="col-lg-6 col-md-6 col-sm-12 service-txt order-2 order-sm-1">
+          <h2>{{service.name}}</h2>
+          <hr class="service-hr" />
+          <p>{{service.intro}}</p>
+          <ul class="service-points">
+            {% for point in service.get_points %}
+            <li class="d-flex">
+              <i class="far fa-hand-point-right me-3 text-primary"></i>
+              {{point.text}}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 service-img order-1 order-sm-2">
+          <img src="{{service.image.url}}" />
+        </div>
+        {% else %}
+        <div class="col-lg-6 col-md-6 col-sm-12 service-img">
+          <img src="{{service.image.url}}" />
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 service-txt">
+          <h2>{{service.name}}</h2>
+          <hr class="service-hr" />
+          <p>{{service.intro}}</p>
+          <ul class="service-points">
+            {% for point in service.get_points %}
+            <li class="d-flex">
+              <i class="far fa-hand-point-right me-3 text-primary"></i>
+              {{point.text}}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <!-- end service -->
+  {% endblock %}
+</div>

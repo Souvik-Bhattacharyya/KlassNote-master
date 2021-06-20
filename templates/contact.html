@@ -1,0 +1,133 @@
+{% extends 'base.html' %} {% load static %} {% block title %}<title>
+  Contact | KlassNote
+</title>
+{% endblock %} {% block content %}
+<link href="{% static 'css/contact.css' %}" rel="stylesheet" />
+<link href="{% static 'css/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" />
+
+<!-- contact card -->
+<div class="hero">
+  <!-- <img src="{% static 'images/retro-furnish.png' %}"> -->
+  <div class="overlay"></div>
+  <div class="hero-text">
+    <h1>Contact Us</h1>
+  </div> 
+</div>
+<div class="container my-5">
+  <div class="row" style="max-width: 100%">
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <div data-aos="flip-left" data-aos-duration="1000">
+        <div class="contact-card" style="border-bottom-color: var(--blue-star)">
+          <div class="d-flex justify-content-center">
+            <i class="fa fa-facebook" style="background: linear-gradient(120deg, #7bcde6, #0091ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+          </div>
+          <h3>Stay Connected</h3>
+          <a href="#">Find more information<br />
+            on our facebook page</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <div data-aos="flip-left" data-aos-duration="1000">
+        <div class="contact-card" style="border-bottom-color: #E1306C">
+          <div class="d-flex justify-content-center" style="background: #fff;">
+            <i class="fa fa-instagram" style="background: linear-gradient(236deg,#405DE6,#5851DB,#833AB4,#C13584,#E1306C,#FD1D1D,#F56040,#f77737,#FCAF45,#ffdc80); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+          </div>
+          <h3>Follow Us</h3>
+          <a href="#">Follow us on instagram<br />
+            for latest updates</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <div data-aos="flip-left" data-aos-duration="1000">
+        <div class="contact-card" style="border-bottom-color: var(--green-star)">
+          <div class="d-flex justify-content-center">
+            <i class="fa fa-phone" style="color: var(--green-star)"></i>
+          </div>
+          <h3>Speak To Us</h3>
+          <a href="#">033 4004 3773</a>
+          <br />
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <div data-aos="flip-left" data-aos-duration="1000">
+        <div class="contact-card" style="border-bottom-color: #d366af">
+          <div class="d-flex justify-content-center">
+            <i class="fa fa-envelope" style="color: #d366af"></i>
+          </div>
+          <h3>Send An Email</h3>
+          <a href="#">info@enspl.co.in</a>
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end contact card -->
+<div class="mt-5"
+  style="background: linear-gradient(to right, blueviolet, #00dbde); overflow: hidden; position: relative; min-height: 100vh;">
+  <img src="{% static 'images/map.jpeg' %}"
+    style="position: absolute; opacity: .4; object-fit: cover; height: 100%; width: 100%; max-width: 100%;">
+  <div class="mt-5 py-5">
+    <div class="form-container">
+      <div class="form" data-aos="zoom-out-up">
+        <div class="contact-info">
+          <h3 class="title">Let's get in touch</h3>
+          <div class="info mt-5">
+            <div class="address-box">
+              <h3><i class="fa fa-building pe-2" style="color: #1abc9c;"></i>Registered Office</h3>
+              <p>
+                BF 90, SaltLake City
+                <br />
+                Sec - I, Kolkata - 700102
+                <br />
+                India
+              </p>
+            </div>
+            <div class="address-box">
+              <h3><i class="fa fa-building pe-2" style="color: #1abc9c;"></i>Corporate Office</h3>
+              <p>
+                Salt Lake, Opposite CAP Camp, AE - 371
+                <br />
+                AE Block, Sec - I, Bidhannagar, Kolkata - 700064
+                <br />
+                India
+              </p>
+              <p style="color: black;" class="mt-4">
+                <span><i class="fa fa-phone pe-2"></i>Ph :</span> <u
+                  style="color: #1abc9c; cursor: pointer; padding-left: 10px; font-size: 16px;">033 4004
+                  3773</u><br /><br />
+                <span><i class="fa fa-envelope pe-2"></i>Email :</span> <u
+                  style="color: #1abc9c; cursor: pointer; padding-left: 10px; font-size: 16px;">info@enspl.co.in</u>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+          <form action="index.html" autocomplete="off">
+            {% csrf_token %}
+            <h3 class="title">Contact us</h3>
+            <div class="input-container">
+              <input type="text" name="name" class="input" placeholder="Name"/>
+            </div>
+            <div class="input-container">
+              <input type="email" name="email" class="input" placeholder="Email"/>
+            </div>
+            <div class="input-container textarea">
+              <textarea name="message" class="input" placeholder="Message"></textarea>
+            </div>
+            <button type="submit" class="btn w-100">
+              Send <i class="fa fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

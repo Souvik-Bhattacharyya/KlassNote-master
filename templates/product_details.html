@@ -1,0 +1,105 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>{{details.name}} | KlassNote</title>{% endblock %} {% block content %}
+<link href="{% static 'css/product.css' %}" rel="stylesheet" />
+<link href="{% static 'css/product_details.css' %}" rel="stylesheet" />
+
+<!-- image and info -->
+<div class="row" style="width: 100%; margin: 0; max-width: 100%">
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <div
+      id="carouselExampleIndicators"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 0"
+        ></button>
+        {% for i in index %}
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="{{i}}"
+          aria-label="Slide {{i}}"
+        ></button>
+        {% endfor %}
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{{details.thumbnail.image.url}}" class="d-block w-100" />
+        </div>
+        {% for img in images %}
+        <div class="carousel-item">
+          <img src="{{img.image.url}}" class="d-block w-100" />
+        </div>
+        {% endfor %}
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <div
+    class="col-lg-6 col-md-6 col-sm-12 product-info p-lg-4 p-md-3 p-sm-2 p-2"
+  >
+    <h2 class="mb-3">{{details.name}}</h2>
+    {% comment %} <span>Rs. {{details.price}}/-</span> {% endcomment %}
+    <p class="mt-4">{{details.description}}</p>
+    <ul class="product-specification">
+      {% for spec in details.get_specifications %}
+      <li>
+        <p><span>{{spec.subject}}: </span>{{spec.specification}}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<!-- end image and info -->
+
+<!-- image related products -->
+<div class="d-flex justify-content-center mt-5" style="max-width: 100%">
+  <h1 class="me-4 mt-5" style="font-family: Pacifico; color: var(--blue-star)">
+    Related
+  </h1>
+  <h1 class="mt-5" style="font-family: Pacifico">Products</h1>
+</div>
+<hr style="max-width: 80%; margin: auto" />
+<div class="container my-1">
+  <div class="row">
+    {% for product in details.get_related_products %}
+    <div class="col-lg-3 col-md-6 col-sm-12" style="display: block">
+      <div class="product-card">
+        <div class="product-img-cover">
+          <img src="{{product.related.thumbnail.image.url}}" />
+        </div>
+        <a href="{% url 'product_details' product.related.id %}">
+          <h5>{{product.related.name}}</h5>
+          <p><span>Rs.</span> {{product.related.price}}/-</p>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- end image related products -->
+{% endblock %}

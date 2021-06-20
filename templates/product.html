@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Products | KlassNote</title>{% endblock %} {%block content %}
+<link href="{% static 'css/product.css' %}" rel="stylesheet" />
+
+<img class="product-cover" src="" />
+
+<div class="container mb-5">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="{% url 'products' %}">All</a></li>
+    {% for category in categories %}
+    <li class="page-item"><a class="page-link" href="{% url 'filter_products' category.id %}">{{category.name}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+<!-- end categories -->
+
+<!-- products -->
+<div class="container mb-5">
+  <div class="row">
+    {% for product in all_products %}
+    <div class="col-lg-4 col-md-6 col-sm-12" style="display: block">
+      <div data-aos="flip-left" data-aos-duration="1000">
+        <div class="product-card">
+          <img src="{{product.thumbnail.image.url}}" />
+          <div class="card-content">
+            <a href="{% url 'product_details' product.id %}">
+              <h6>{{product.name}}</h6>
+              <!-- {% comment %}
+              <p><span>Rs.</span> {{product.price}}/-</p>
+              {% endcomment %} -->
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- end products -->
+{% endblock%}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Gallery | KlassNote</title>
+{% endblock %} {% block content %}
+<link href="{% static 'css/gallery.css' %}" rel="stylesheet" />
+
+<!-- gallery -->
+<div class="container-fluid mt-5">
+  {% for index, img in photos %}
+  <div data-aos="fade-up">
+    <div class="row mt-5" {%if not index%}style="background: 	#cccccc70; padding-right: 3rem; padding-left: 3rem;" {%endif%}>
+      {% if index %}
+      <div class="col-lg-6 col-md-6 col-sm-12 gallery-img">
+        <div data-aos="flip-left">
+          {% if img.media_type == '0' %}
+          <img src="{{img.image.url}}" />
+          {% else %} 
+          <video controls>
+            <source src="{{img.image.url}}" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 gallery-txt">
+        <p>{{img.caption}}</p>
+      </div>
+      {% else %}
+      <div class="col-lg-6 col-md-6 col-sm-12 gallery-txt order-2 order-sm-1">
+        <p>{{img.caption}}</p>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 gallery-img order-1 order-sm-2">
+        <div data-aos="flip-right">
+          {% if img.media_type == '0' %}
+          <img src="{{img.image.url}}" style="transform: rotate(5deg)" />
+          {% else %}
+          <video controls style="transform: rotate(5deg)">
+            <source src="{{img.image.url}}" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="my-5">
+</div>
+<!-- end gallery-->
+{% endblock %}

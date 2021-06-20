@@ -1,0 +1,104 @@
+{% extends 'base.html' %} {% load static %} {% block title %}<title>
+  About | KlassNote
+</title>
+{% endblock %} {% block content %}
+<link href="{% static 'css/about.css' %}" rel="stylesheet" />
+
+<!-- about info -->
+<img src="{{about.about_cover.url}}" class="about-cover" />
+
+<div class="row" style="max-width: 99%">
+  <div class="col-lg-7 col-md-6 col-sm-12">
+    <h1 class="ml6 mt-5 w-100 text-center">
+      <span class="text-wrapper">
+        <span class="letters">Our Story</span>
+      </span>
+    </h1>
+    <hr style="
+        height: 3px;
+        width: 150px;
+        margin: auto;
+        background: blueviolet;
+        opacity: 1;
+        /* filter: drop-shadow(0px 2px 5px rgb(42, 13, 70)); */
+      " />
+    <p class="about-txt p-lg-5 p-md-3 p-sm-1">{{about.about_text|safe}}</p>
+  </div>
+  <div class="col-lg-5 col-md-6 col-sm-12">
+    <img class="about-img" src="{{about.about_image.url}}" />
+  </div>
+</div>
+<!-- end about info -->
+
+<!-- what we do -->
+<div style="
+    background: linear-gradient(to right, #0b4e7ecc, #12d8facc, #5b9171cc); 
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+  ">
+  <img src="{% static 'images/walpaper.jpg' %}" style="position: absolute; opacity: .3; height: 100%; max-width: 100%; width: 100%; object-fit: cover;">
+  <h1 class="ml15 do-header w-100 text-center">
+    <span class="word">What</span>
+    <span class="word">We</span>
+    <span class="word">Do ?</span>
+  </h1>
+
+  <div class="container my-3 py-5 do-s">
+    {% for data in do_s %}
+    <div data-aos="flip-left" data-aos-duration="1500">
+      <div class="do-s-card">
+        <div class="card-circle">
+          <h4>{{data.header}}</h4>
+        </div>
+        <div class="card-content">
+          <p>{{data.text}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div> 
+
+<!-- end what we do -->
+
+<!-- directors-->
+<div class="container mt-5">
+  {% for index, director in directors %} {% if index %}
+  <div data-aos="fade-up-right" data-aos-anchor-placement="top-bottom">
+    <div class="row mb-5">
+      <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
+        <div style="display: block">
+          <img src="{{director.image.url}}" class="director-img" />
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 director-txt">
+        <h2 class="mt-2">{{director.name}}</h2>
+        <h6>{{director.role}}</h6>
+        <br />
+        <p class="director-p">{{director.text|safe}}</p>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div data-aos="fade-up-left" data-aos-anchor-placement="top-bottom">
+    <div class="row mb-5">
+      <div class="col-lg-6 col-md-6 col-sm-12 order-2 order-sm-1 director-txt">
+        <h2 class="mt-2">{{director.name}}</h2>
+        <h6>{{director.role}}</h6>
+        <br />
+        <p class="about-director">{{director.text}}</p>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 order-1 order-sm-2 d-flex justify-content-center align-items-center">
+        <div style="display: block">
+          <img src="{{director.image.url}}" class="director-img" />
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %} {% endfor %}
+</div>
+<!-- end directors-->
+
+<script src="{% static 'js/about.js' %}"></script>
+{% endblock %}

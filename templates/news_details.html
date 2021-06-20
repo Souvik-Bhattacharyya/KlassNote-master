@@ -1,0 +1,108 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>News | KlassNote</title> {% endblock %} {% block content %}
+<link href="{% static 'css/news_details.css' %}" rel="stylesheet" />
+
+<!-- page headers -->
+<div class="container d-flex justify-content-center">
+  <h2 class="my-5 news-page-header">{{details.title}}</h2>
+</div>
+<!-- end page headers -->
+
+<!-- image and info part-->
+<div class="container detail-container">
+  <img class="news-details-img" src="{{details.image.url}}" />
+  <div class="d-flex justify-content-around news-info my-2">
+    <div class="me-2 d-flex justify-content-start">
+      <i class="mt-1 fas fa-user"></i>
+      <p>{{details.post_by}}</p>
+    </div>
+    <div class="me-2 d-flex justify-content-start">
+      <i class="mt-1 fas fa-folder-open"></i>
+      <p>{{details.category}}</p>
+    </div>
+    <div class="me-2 d-flex justify-content-start">
+      <i class="mt-1 fas fa-comment-alt"></i>
+      <p>{{details.total_comments}} Comments</p>
+    </div>
+  </div>
+</div>
+<!-- end image and info part-->
+
+<!-- news body -->
+<div class="container news-details-body">
+  {% if details.heading %}
+  <h3 class="header-section">{{details.heading}}</h3>
+  {% endif %} {% if details.body %}
+  <p class="body-section">{{details.body|safe}}</p>
+  {% endif %} {% if details.embedded %}
+  <p class="embedded-section">{{details.embedded|safe}}</p>
+  {% endif %}
+  <p class="alert alert-primary w-100 reference-txt">
+    <span>Reference : </span
+    ><a href="{{details.reference}}">{{details.reference}}</a>
+  </p>
+</div>
+<!-- end news body-->
+
+<hr style="width: 80%; margin: auto" />
+
+<!-- comment section -->
+<div class="w-100 d-flex justify-content-center mt-5">
+  <h2 style="font-family: Pacifico">Comments</h2>
+</div>
+<div class="container">
+  {% for comment in details.get_comments %}
+  <div class="d-flex justify-content-start each-comment">
+    <img class="avatar" src="{% static 'images/user.png' %}" />
+    <div class="p-2">
+      <h6>{{comment.name}}</h6>
+      <span class="">
+        <i class="far fa-clock me-1"></i>
+        {{comment.date_time}}
+      </span>
+      <p class="mt-3">{{comment.comment|safe}}</p>
+    </div>
+  </div>
+  <hr />
+  {% endfor %}
+  <form
+    class="comment-form"
+    method="POST"
+    style="max-width: 700px; margin: auto"
+  >
+    <h4 class="w-100 text-center my-5">Add a new comment</h4>
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+        <label class="form-label">Name</label>
+        <input
+          class="form-control"
+          type="text"
+          maxlength="100"
+          name="name"
+          required
+        />
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+        <label class="form-label">Email</label>
+        <input class="form-control" type="email" name="email" required />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Comment</label>
+      <textarea
+        class="form-control"
+        rows="5"
+        name="comment"
+        required
+      ></textarea>
+    </div>
+    <div class="mb-3 d-flex justify-content-center">
+      <button type="submit" class="btn btn-outline-primary">
+        <i class="fas fa-paper-plane me-2"></i>Send
+      </button>
+    </div>
+  </form>
+</div>
+<!-- end comment section -->
+{% endblock %}
